@@ -17,18 +17,18 @@ def iou(pred,mask,prm):
 
     return(intersection/union)
 
-pred=np.zeros((640,480))
-mask=np.zeros((640,480))
+pred=np.zeros((640,480,1))
+mask=np.zeros((640,480,1))
 
 pred[200:400,200:400]=255
 mask[200:300,200:300]=255
-plt.figure()
-plt.imshow(pred,cmap='gray')
-plt.figure()
-plt.imshow(mask,cmap='gray')
+# plt.figure()
+# plt.imshow(pred,cmap='gray')
+# plt.figure()
+# plt.imshow(mask,cmap='gray')
 
-X =  tf.placeholder(shape=(640,480),dtype=tf.int8)
-y =  tf.placeholder(shape=(640,480),dtype=tf.int8)
+X =  tf.placeholder(shape=(640,480,1),dtype=tf.int8)
+y =  tf.placeholder(shape=(640,480,1),dtype=tf.int8)
 
 norm_pred = tf.image.per_image_standardization(X)
 norm_mask = tf.image.per_image_standardization(y)
