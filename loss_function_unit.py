@@ -22,8 +22,8 @@ def iou(pred,mask,prm):
 pred=np.zeros((640,480,1))
 mask=np.zeros((640,480,1))
 
-pred[200:400,200:400]=255
-mask[200:300,200:300]=255
+pred[200:400,200:400]=1
+mask[200:300,200:300]=1
 # plt.figure()
 # plt.imshow(pred,cmap='gray')
 # plt.figure()
@@ -38,4 +38,10 @@ iou = iou(X,y,prm)
 
 with tf.Session() as sess:
     pred_vector,mask_vector, iou = sess.run(iou, feed_dict={ X:pred,y:mask})
+    print(np.unique(pred_vector))
+    print(np.sum(pred_vector))
+    print(np.unique(mask_vector))
+    print(np.sum(mask_vector))
+    print(np.sum(pred_vector*mask_vector))
+
 
