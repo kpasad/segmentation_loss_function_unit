@@ -8,8 +8,8 @@ class prm:
 
 
 def iou(pred,mask,prm):
-    pred_vector = tf.layers.flatten(pred)
-    mask_vector = tf.layers.flatten(mask)
+    pred_vector = tf.reshape(pred,[-1])
+    mask_vector = tf.reshape(mask,[-1])
 
     intersection = tf.reduce_sum(pred_vector*mask_vector)
     epsilon = 1e-7
