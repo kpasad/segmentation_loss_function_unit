@@ -28,8 +28,8 @@ mask[200:300,200:300]=1
 # plt.figure()
 # plt.imshow(mask,cmap='gray')
 
-X =  tf.placeholder(shape=(640,480,1),dtype=tf.int32)
-y =  tf.placeholder(shape=(640,480,1),dtype=tf.int32)
+X =  tf.placeholder(shape=(640,480,1),dtype=tf.float32)
+y =  tf.placeholder(shape=(640,480,1),dtype=tf.float32)
 
 
 iou = iou(X,y,prm)
