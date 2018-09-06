@@ -13,7 +13,9 @@ def iou(pred,mask,prm):
 
     intersection = tf.reduce_sum(pred_vector*mask_vector)
     epsilon = 1e-7
-    union = tf.reduce_sum(pred_vector)+tf.reduce_sum(mask_vector)+epsilon
+    #union = tf.reduce_sum(pred_vector)+tf.reduce_sum(mask_vector)+epsilon
+    union = tf.reduce_sum(pred_vector)
+    union = tf.Print(union,[union,tf.shape(pred_vector), tf.shape(mask_vector)])
 
     return(intersection/union)
 
