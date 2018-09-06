@@ -13,11 +13,10 @@ def iou(pred,mask,prm):
 
     intersection = tf.reduce_sum(pred_vector*mask_vector)
     epsilon = 1e-7
-    #union = tf.reduce_sum(pred_vector)+tf.reduce_sum(mask_vector)+epsilon
-    union = tf.reduce_sum(pred_vector)
-    union = tf.Print(union,[union,tf.shape(pred_vector), tf.shape(mask_vector)])
+    union = tf.reduce_sum(pred_vector)+tf.reduce_sum(mask_vector)
+    union = tf.Print(union,[union, intersection])
 
-    return(pred_vector,mask_vector,intersection/union)
+    return(intersection/union)
 
 pred=np.zeros((640,480,1))
 mask=np.zeros((640,480,1))
@@ -37,11 +36,7 @@ iou = iou(X,y,prm)
 
 
 with tf.Session() as sess:
-    pred_vector,mask_vector, iou = sess.run(iou, feed_dict={ X:pred,y:mask})
-    print(np.unique(pred_vector))
-    print(np.sum(pred_vector))
-    print(np.unique(mask_vector))
-    print(np.sum(mask_vector))
-    print(np.sum(pred_vector*mask_vector))
+    iou = sess.run(iou, feed_dict={ X:pred,y:mask})
+
 
 
